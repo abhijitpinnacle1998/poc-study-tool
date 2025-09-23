@@ -7,5 +7,20 @@ export const API_ENDPOINTS = {
       resetPassword: '/api/v1/auth/reset-password',
       resetPasswordConfirm: '/api/v1/auth/reset-password/confirm',
     },
+    decks: {
+      fetch: '/api/v1/decks',
+    },
+    fileUpload: {
+      upload: '/api/v1/file-processing/upload/multiple',
+    },
+    user: {
+      updateEmail: '/api/v1/users/:id',
+      updatePassword: '/api/v1/users/password',
+      updateApiKey: '/api/v1/users/:id',
+    },
+    review: {
+      due: '/api/v1/review/due',
+      submit: '/api/v1/review/submit',
+    },
   },
 };

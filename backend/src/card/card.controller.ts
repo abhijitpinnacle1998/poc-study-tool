@@ -38,8 +38,11 @@ export class CardController {
   @Post()
   @ApiOperation({ summary: 'Create a new card' })
   @ApiResponse({ status: 201, description: 'Card created successfully' })
-  async createCard(@Body() createCardDto: CreateCardDto) {
-    return this.cardService.createCard(createCardDto);
+  async createCard(
+    @Body() createCardDto: CreateCardDto,
+    @User('id') userId: number
+  ) {
+    return this.cardService.createCard(createCardDto, userId);
   }
 
   @Put(':id')
@@ -54,26 +57,30 @@ export class CardController {
     return this.cardService.updateCard(id, updateCardDto, userId);
   }
 
-  @Get(':deckId')
+  @Get()
   @ApiOperation({ summary: 'Get all cards in a deck' })
   @ApiParam({ name: 'deckId', type: Number, description: 'Deck ID' })
   @ApiQuery({ name: 'page', required: false, type: Number, example: 1 })
   @ApiQuery({ name: 'limit', required: false, type: Number, example: 10 })
   @ApiQuery({ name: 'search', required: false, type: String })
   @ApiResponse({ status: 200, description: 'Cards fetched successfully' })
-  async getByDeckId(
-    @Param('deckId') deckId: number,
+  async getCardsByUserId(
     @User('id') userId: number,
-    @Query('page') page: number = 1,
-    @Query('limit') limit: number = 10,
-    @Query('search') search?: string
+    @Query('page') page?: string,
+    @Query('limit') limit?: string,
+    @Query('search') search?: string,
+    @Query('deckId') deckId?: string
   ) {
-    return this.cardService.getByDeckId(
-      deckId,
-      Number(userId),
-      page,
-      limit,
-      search
+    const pageNum = page ? parseInt(page, 10) : 1;
+    const limitNum = limit ? parseInt(limit, 10) : 10;
+    const deckIdNum = deckId ? parseInt(deckId, 10) : undefined;
+
+    return this.cardService.getCardsByUserId(
+      userId,
+      pageNum,
+      limitNum,
+      search,
+      deckIdNum
     );
   }
 

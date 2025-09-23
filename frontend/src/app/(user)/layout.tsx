@@ -22,7 +22,7 @@ import {
   FolderOpen,
   SquarePlus,
   BookOpen,
-  BarChart3,
+  // BarChart3,
   Settings,
   LogOut,
   Mail,
@@ -49,10 +49,11 @@ function TopNavigation() {
   const navItems = [
     { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { href: '/decks', label: 'Decks', icon: FolderOpen },
+    { href: '/cards', label: 'Cards', icon: SquarePlus },
     { href: '/create-card', label: 'Create Card', icon: SquarePlus },
     { href: '/study', label: 'Study', icon: BookOpen },
-    { href: '/analytics', label: 'Analytics', icon: BarChart3 },
-    { href: '/settings', label: 'Settings', icon: Settings },
+    // { href: '/analytics', label: 'Analytics', icon: BarChart3 },
+    // { href: '/settings', label: 'Settings', icon: Settings },
   ];
 
   return (
@@ -114,6 +115,14 @@ function TopNavigation() {
                 </div>
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
+              <Link href="/settings">
+                <DropdownMenuItem className="!cursor-pointer">
+                  <div className="flex items-center space-x-2">
+                    <Settings className="h-4 w-4" />
+                    <span className="text-md">Settings</span>
+                  </div>
+                </DropdownMenuItem>
+              </Link>
               <DropdownMenuItem
                 onClick={handleLogout}
                 disabled={isLoggingOut}

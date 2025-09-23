@@ -46,6 +46,7 @@ async function bootstrap() {
         operationsSorter: 'alpha',
       },
     });
+    // const corsOrigins = configService.get<string[]>('app.corsOrigins') || ['*'];
 
     // Security middleware
     app.use(
@@ -58,7 +59,7 @@ async function bootstrap() {
 
     // CORS configuration
     app.enableCors({
-      origin: corsOrigins,
+      origin: '*',
       credentials: true,
       methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
       allowedHeaders: [

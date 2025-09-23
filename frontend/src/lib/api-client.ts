@@ -1,4 +1,3 @@
-// utils/apiClient.ts
 import axios, {
   AxiosError,
   AxiosResponse,
@@ -12,8 +11,6 @@ const apiClient = axios.create({
     'Content-Type': 'application/json',
   },
 });
-
-// console.log('config: ', apiClient);
 
 // Flag to prevent multiple refresh attempts
 let isRefreshing = false;
