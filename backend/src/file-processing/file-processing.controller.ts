@@ -12,6 +12,7 @@ import {
   ApiOperation,
   ApiResponse,
   ApiConsumes,
+  ApiBearerAuth,
 } from '@nestjs/swagger';
 import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { FileProcessingService } from './file-processing.service';
@@ -29,6 +30,7 @@ import {
 @ApiTags('File Processing')
 @Controller('file-processing')
 @UseGuards(JwtAuthGuard)
+@ApiBearerAuth()
 export class FileProcessingController {
   constructor(private readonly fileProcessingService: FileProcessingService) {}
 
